@@ -9,7 +9,23 @@ const itemTitle = document.querySelector("#item-title");
 
 const API_KEY = "2d529a9fd86d9f6d2ed5a8dd40b7981e 	";
 const API_ID = "8e6e6d9e";
-const API_LINK = `https://api.edamam.com/search?q=chicken&app_id=${API_ID}&app_key=${API_KEY}`;
+
+const RandomNumber = Math.floor(Math.random() * 9);
+const randomFood = [
+  "chicken",
+  "cheese",
+  "pork",
+  "pizza",
+  "bread",
+  "sauce",
+  "sugar",
+  "pastry",
+  "beef"
+];
+
+let RandomFood = randomFood[Math.floor(Math.random() * 9)];
+
+const API_LINK = `https://api.edamam.com/search?q=${RandomFood}&app_id=${API_ID}&app_key=${API_KEY}`;
 
 let foodInformation = {};
 
@@ -18,20 +34,29 @@ function getData() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      foodInformation.title = data.hits[0].recipe.label;
-      foodInformation.calories = Math.floor(data.hits[0].recipe.calories);
-      foodInformation.protein = Math.floor(data.hits[0].recipe.digest[2].total);
-      foodInformation.carbs = Math.floor(data.hits[0].recipe.digest[1].total);
-      foodInformation.fat = Math.floor(data.hits[0].recipe.digest[0].total);
-      foodInformation.image = data.hits[0].recipe.image;
-      foodInformation.ingredients = data.hits[0].recipe.ingredientLines;
-      foodInformation.time = data.hits[0].recipe.totalTime;
+      foodInformation.title = data.hits[RandomNumber].recipe.label;
+      foodInformation.calories = Math.floor(
+        data.hits[RandomNumber].recipe.calories
+      );
+      foodInformation.protein = Math.floor(
+        data.hits[RandomNumber].recipe.digest[2].total
+      );
+      foodInformation.carbs = Math.floor(
+        data.hits[RandomNumber].recipe.digest[1].total
+      );
+      foodInformation.fat = Math.floor(
+        data.hits[RandomNumber].recipe.digest[0].total
+      );
+      foodInformation.image = data.hits[RandomNumber].recipe.image;
+      foodInformation.ingredients =
+        data.hits[RandomNumber].recipe.ingredientLines;
+      foodInformation.time = data.hits[RandomNumber].recipe.totalTime;
     });
 }
 
 async function seeInfo() {
   await getData();
-  await console.log(foodInformation);
+  console.log(foodInformation);
   setTimeout(() => {
     itemTitle.innerText = foodInformation.title;
     let unorderedList = document.createElement("ul");
@@ -41,8 +66,12 @@ async function seeInfo() {
       unorderedList.appendChild(listItem);
     }
     itemText.appendChild(unorderedList);
-    itemPicture.style.backgroundImage = `url('${foodInformation.image}')`;
-    console.log(itemPicture.style.backgroundImage);
+    let imageElement = document.createElement("img");
+    imageElement.src = `${foodInformation.image}`;
+    itemPicture.appendChild(imageElement);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 500);
   }, 1000);
 }
 
