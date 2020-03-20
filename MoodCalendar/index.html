@@ -1,0 +1,44 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/1e10f2d5f9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Sen&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mood Calendar</title>
+  </head>
+  <body>
+    <container class="center">
+      <header>
+        <h2>2019 Mood Calendar</h2>
+        <h4>~ color each day depending on what your mood was / is ~</h4>
+        <p>Select mood:</p>
+        <div id="moods-container">
+          <button class="mood-emo "><i class="far fa-laugh"></i></button>
+          <button class="mood-emo "><i class="far fa-smile"></i></button>
+          <button class="mood-emo "><i class="far fa-meh"></i></button>
+          <button class="mood-emo "><i class="far fa-frown"></i></button>
+          <button class="mood-emo ">
+            <i class="far fa-sad-tear"></i>
+          </button>
+        </div>
+        <p>then click on the dates below</p>
+      </header>
+      <div class="calendar" id="calendar"></div>
+      <div class="option_buttons">
+        <button id="random_btn"><i class="fas fa-random"></i></button>
+        <button id="reset_btn"><i class="fas fa-sync"></i></button>
+      </div>
+    </container>
+    <script src="app.js"></script>
+  </body>
+</html>
