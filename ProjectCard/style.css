@@ -4,6 +4,7 @@
 
 body {
   background: #f7f7f7;
+  font-family: "Sen", sans-serif;
 }
 
 .flip-container {
@@ -16,7 +17,6 @@ body {
 
 .flip-container:hover .flipper {
   transform: rotateY(180deg);
-  font-family: "Sen", sans-serif;
 }
 
 .flip-container,
