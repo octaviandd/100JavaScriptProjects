@@ -1,6 +1,8 @@
 # 100JavaScriptProjects
 
 
+Projects made in Vanilla JS / CSS / HTML
+
 
 ![](one.png)
 
